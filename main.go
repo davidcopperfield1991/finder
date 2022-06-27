@@ -10,7 +10,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// const INPUT_FILE = "value.txt"
 const INPUT_FILE = "../../.bash_history"
 
 func readLines(path string) ([]string, error) {
@@ -38,8 +37,6 @@ func peydakon(loghat string) []string {
 
 	sort.Strings(arzesh)
 
-	// var p string
-
 	fmt.Scanln(loghat)
 
 	fmt.Println(loghat)
@@ -64,11 +61,8 @@ func find(c *fiber.Ctx) error {
 	loghat := c.Params("loghat")
 	peydakon(loghat)
 	fmt.Println(loghat)
-	// return nil
-	// var belakhare UU
-	ann := peydakon(loghat)
-	// fmt.Println(ann)
-	return c.JSON(ann)
+	result := peydakon(loghat)
+	return c.JSON(result)
 }
 
 func Routers(app *fiber.App) {
@@ -76,10 +70,8 @@ func Routers(app *fiber.App) {
 }
 
 func main() {
-	// peydakon()
 	app := fiber.New()
 	Routers(app)
-
 	app.Listen(":3333")
 
 }
